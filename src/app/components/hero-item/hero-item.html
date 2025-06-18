@@ -1,0 +1,43 @@
+<div [class]="isVillain() ? 'hero-item hero-villain' : 'hero-item'">
+    <div  class="hero-img">
+        <img [src]="hero().img" alt="Hero image" />
+    </div>
+    <div class="details">
+        <div class="hero-name"> {{hero().name}} </div>
+    </div>
+    <div class="hero-stats">
+        <span>Inteligencia: {{ hero().stats.intelligence }}</span>
+        <button [disabled]="hero().stats.intelligence === 1"
+        (click)="decrementStats('intelligence')">-</button>
+        <button [disabled]="hero().stats.intelligence === 99"
+        (click)="increment('intelligence')">+</button>
+    </div>
+    <div class="hero-stats">
+        <span>Strength: {{ hero().stats.strength }}</span>
+        <button [disabled]="hero().stats.strength === 1"
+        (click)="decrementStats('strength')">-</button>
+        <button [disabled]="hero().stats.strength === 99"
+        (click)="increment('strength')">+</button>
+    </div>
+    <div class="hero-stats">
+        <span>Agility: {{ hero().stats.agility }}</span>
+        <button [disabled]="hero().stats.agility === 1"
+        (click)="decrementStats('agility')">-</button>
+        <button [disabled]="hero().stats.agility === 99"
+        (click)="increment('agility')">+</button>
+    </div>
+    <div class="hero-stats">
+        <span>Speed: {{ hero().stats.speed }}</span>
+        <button [disabled]="hero().stats.speed === 1"
+        (click)="decrementStats('speed')">-</button>
+        <button [disabled]="hero().stats.speed === 99"
+        (click)="increment('speed')">+</button>
+    </div>
+    <div class="hero-stats">
+        <span>Durability: {{ hero().stats.durability }}</span>
+        <button [disabled]="hero().stats.durability === 1"
+        (click)="decrementStats('durability')">-</button>
+        <button [disabled]="hero().stats.durability === 99"
+        (click)="increment('durability')">+</button>
+    </div>
+</div>
