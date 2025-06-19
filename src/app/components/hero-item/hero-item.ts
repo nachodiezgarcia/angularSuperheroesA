@@ -1,31 +1,28 @@
-import { identifierName } from '@angular/compiler';
-import { Component, computed, input } from '@angular/core';
-import { Hero, keyStats, Stats } from '../../shared/interfaces/hero.interface';
-import { HeroList } from '../hero-list/hero-list';
+import { Component, computed, input, output } from '@angular/core';
+import { Hero, keyStat } from '../../shared/interfaces/hero.interface';
+import { HeroStatsChange } from '../../shared/interfaces/hero-stats-change.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-hero-item',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './hero-item.html',
   styleUrl: './hero-item.scss'
 })
 export class HeroItem {
   hero = input.required<Hero>();
 
+  // output(devolvemos) de lo que queremos cambiar del heroe
+  statsChange = output<HeroStatsChange>();
+
   isVillain = computed(() => this.hero().alignment === 'bad');
 
-  decrementStats(heroStat: keyStats): void {
+  decrementStats(heroStat: keyStat): void {
     //heroStat es la stat que nos dan
-    const value: number = this.hero().stats[heroStat];
-    if (value > 1){
-      this.hero().stats[heroStat]--;
-    }
+    this.statsChange.emit({ hero: this.hero(), abilitie: heroStat, value: -1});
   }
   
-  increment (heroStat: keyStats): void {
-    const value: number = this.hero().stats[heroStat];
-    if (value < 99) {
-      this.hero().stats[heroStat]++;
-    }
+  increment (heroStat: keyStat): void {
+    this.statsChange.emit({ hero: this.hero(), abilitie: heroStat, value: 1});
   }
 }

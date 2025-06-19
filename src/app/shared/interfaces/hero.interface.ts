@@ -17,4 +17,4 @@ export interface Stats {
 }
 
 //Una de las llaves de Stats, para poder ir cambiando estas :)
-export type keyStats = keyof Stats;
+export type keyStat = keyof Stats;
