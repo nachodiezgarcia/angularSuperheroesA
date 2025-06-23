@@ -1,0 +1,89 @@
+<h3>Add Hero</h3>
+
+<div>
+    <h4 class="error">{{ message }}</h4>
+    <form [formGroup]="hForm" (ngSubmit)="addHero()">
+        <div class="row">
+            <div class="column">
+                <div class="input-group">
+                    <label for="text">Nombre </label>
+                    <input id="name" name="name" formControlName="name" type="text" required/>
+                </div>
+            
+                <div formGroupName="stats">
+                    <div class="input-group">
+                        <label for="text">Agility </label>
+                        <input id="agility" name="agility" formControlName="agility" type="number" placeholder="Agility" required/>
+                    </div>
+                    <div class="input-group">
+                        <label for="text">Combat </label>
+                        <input id="combat" name="combat" formControlName="combat" type="number" placeholder="Combat" required/>
+                    </div>
+                    <div class="input-group">
+                        <label for="text">Durability </label>
+                        <input id="durability" name="durability" formControlName="durability" type="number" placeholder="Durability" required/>
+                    </div>
+                    <div class="input-group">
+                        <label for="text">Intelligence </label>
+                        <input id="intelligence" name="intelligence" formControlName="intelligence" type="number" placeholder="Intelligence" required/>
+                    </div>
+                    <div class="input-group">
+                        <label for="text">Power </label>
+                        <input id="power" name="power" formControlName="power" type="number" placeholder="Power" required/>
+                    </div>
+                    <div class="input-group">
+                        <label for="text">Speed </label>
+                        <input id="speed" name="speed" formControlName="speed" type="number" placeholder="Speed" required/>
+                    </div>
+                    <div class="input-group">
+                        <label for="text">Strength </label>
+                        <input id="strength" name="strength" formControlName="strength" type="number" placeholder="Strength" required/>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="text">Image: </label>
+                    <select formControlName="img">
+                        <option value="https://i.pinimg.com/originals/86/75/02/867502a6701dc48f7b7643a92cd8a531.png">
+                            Joker
+                        </option>
+                        <option value="https://i.pinimg.com/564x/3f/f9/7d/3ff97d4156820b11ff86bf3862ebaee5.jpg">
+                            Hulk
+                        </option>
+                        <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqq2zBtUyfU4PTsNQ9IosU08kKWGNGePrQd_h1FUl0xrT4jYDk7D6PS1DzQFMDtf0xGq4&usqp=CAU">
+                            Super-Man
+                        </option>
+                        <option value="https://http2.mlstatic.com/D_NQ_NP_940641-MLA78614579494_082024-O.webp">
+                            Green lantern
+                        </option>
+                        <option value="https://upload.wikimedia.org/wikipedia/en/e/e4/Catwoman_Infobox.jpg">
+                            Catwoman
+                        </option>
+                        <option value="https://i.pinimg.com/736x/8d/41/6d/8d416d821e366aeb0853081dbcab9f0e.jpg">
+                            Bionic Woman
+                        </option>
+                        <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGX-ljswJd6-9qa3bl2hmNummUmerrIw89YHG8uVzKaR2SmiLzLA1mfrJr0n1UhuP2Ae4&usqp=CAU">
+                            Captein America
+                        </option>
+                        <option value="https://thecouch.world/wp-content/uploads/2020/05/846115343.jpg">
+                            Tanos
+                        </option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="text">Alingment </label>
+                    <select formControlName="alignment">
+                        <option value="good">
+                            Good
+                        </option>
+                        <option value="bad" selected>
+                            Bad
+                        </option>
+                    </select>
+                </div>
+            </div> 
+        </div>
+        <div class="row">
+            <button>Create</button>
+        </div>
+    </form>
+</div>
