@@ -7,38 +7,36 @@
             <div class="column">
                 <div class="input-group">
                     <label for="text">Nombre </label>
-                    <input id="name" name="name" formControlName="name" type="text" required/>
+                    <input id="name" name="name" formControlName="name" type="text" placeholder="Name" required/>
                 </div>
-            
+                @if (this.hForm.get("name")?.dirty && this.hForm.get("name")?.invalid) {
+                    <div class="error">
+                        @if (this.hForm.get("name")?.getError("required")) {
+                            <div>* Hero name is required</div>
+                        }
+                        @if (this.hForm.get("name")?.getError("forbiddenName")) {
+                            <div>* Hero name must be valid</div>
+                        }
+                    </div>
+                }
                 <div formGroupName="stats">
-                    <div class="input-group">
-                        <label for="text">Agility </label>
-                        <input id="agility" name="agility" formControlName="agility" type="number" placeholder="Agility" required/>
-                    </div>
-                    <div class="input-group">
-                        <label for="text">Combat </label>
-                        <input id="combat" name="combat" formControlName="combat" type="number" placeholder="Combat" required/>
-                    </div>
-                    <div class="input-group">
-                        <label for="text">Durability </label>
-                        <input id="durability" name="durability" formControlName="durability" type="number" placeholder="Durability" required/>
-                    </div>
-                    <div class="input-group">
-                        <label for="text">Intelligence </label>
-                        <input id="intelligence" name="intelligence" formControlName="intelligence" type="number" placeholder="Intelligence" required/>
-                    </div>
-                    <div class="input-group">
-                        <label for="text">Power </label>
-                        <input id="power" name="power" formControlName="power" type="number" placeholder="Power" required/>
-                    </div>
-                    <div class="input-group">
-                        <label for="text">Speed </label>
-                        <input id="speed" name="speed" formControlName="speed" type="number" placeholder="Speed" required/>
-                    </div>
-                    <div class="input-group">
-                        <label for="text">Strength </label>
-                        <input id="strength" name="strength" formControlName="strength" type="number" placeholder="Strength" required/>
-                    </div>
+                    @for (stat of statsString; track stat) {
+                        <div class="input-group">
+                            <label [for]="stat">{{ stat | titlecase }} </label>
+                            <input [id]="stat" [name]="stat" [formControlName]="stat" type="number" [placeholder]="stat | titlecase" required/>
+                        </div>
+                        @if (this.hForm.get("stats")?.get(stat)?.dirty && this.hForm.get("stats")?.get(stat)?.invalid) {
+                            <div class="error">
+                                @if (this.hForm.get("stats")?.get(stat)?.getError("required")) {
+                                    <div>* Hero {{stat}} is required</div>
+                                }
+                                @if (this.hForm.get("stats")?.get(stat)?.getError("min") ||
+                                this.hForm.get("stats")?.get(stat)?.getError("max")) {
+                                    <div>* The value must be betwen 1 and 99</div>
+                                }
+                            </div>
+                        }
+                    }              
                 </div>
                 <div class="input-group">
                     <label for="text">Image: </label>
@@ -83,7 +81,7 @@
             </div> 
         </div>
         <div class="row">
-            <button>Create</button>
+            <button [disabled]="hForm.invalid" [hidden]="hForm.invalid">Create</button>
         </div>
     </form>
 </div>

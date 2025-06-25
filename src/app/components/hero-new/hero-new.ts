@@ -1,10 +1,12 @@
 import { Component, inject, output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Hero } from '../../shared/interfaces/hero.interface';
+import { heroNameValidators } from '../../shared/validators/hero-name.validators';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-hero-new',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TitleCasePipe],
   templateUrl: './hero-new.html',
   styleUrl: './hero-new.scss'
 })
@@ -13,8 +15,9 @@ export class HeroNew {
   add = output<Hero>();
   //creamos el FormBuilder (herramienta que te hace más facil hacer un formulario)
   readonly #formBuilder = inject(FormBuilder);
+  statsString: string[] = ["agility", "combat", "durability", "intelligence", "power", "speed", "strength"];
   hForm: FormGroup = this.#formBuilder.group({
-    name: ['Joker', Validators.required],
+    name: ['Joker', Validators.required, heroNameValidators],
     stats: this.#formBuilder.group({
       agility: [70, [Validators.required, Validators.min(1), Validators.max(99)]],
       combat: [60, [Validators.required, Validators.min(1), Validators.max(99)]],
@@ -28,19 +31,21 @@ export class HeroNew {
     alignment: ['bad', Validators.required]
   })
   message = '';
+  constructor() {
+    this.hForm.statusChanges.subscribe(() => {
+      this.message = this.hForm.invalid ? 'Please correct the errors and submit the form': '';
+    });
+  }
+  
   addHero(){
-    if(this.hForm.invalid) {
-      this.message = 'Please correct the errors and resubmit the form';
-    }else{
-      this.message= '';
-      //Vamos a devolver un hero
-      const hero : Hero = {
-        id: Math.floor(Math.random()*1000)+1,
-        ...this.hForm.value,
-        stats: { ...this.hForm.value.stats }
-      };
-      console.log('Creating Hero', hero);
-      this.add.emit(hero);
+    this.message= '';
+    //Vamos a devolver un hero
+    const hero : Hero = {
+      id: Math.floor(Math.random()*1000)+1,
+      ...this.hForm.value,
+      stats: { ...this.hForm.value.stats }
     };
+    console.log('Creating Hero', hero);
+    this.add.emit(hero);
   }
 }
