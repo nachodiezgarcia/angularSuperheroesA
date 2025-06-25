@@ -41,30 +41,11 @@
                 <div class="input-group">
                     <label for="text">Image: </label>
                     <select formControlName="img">
-                        <option value="https://i.pinimg.com/originals/86/75/02/867502a6701dc48f7b7643a92cd8a531.png">
-                            Joker
-                        </option>
-                        <option value="https://i.pinimg.com/564x/3f/f9/7d/3ff97d4156820b11ff86bf3862ebaee5.jpg">
-                            Hulk
-                        </option>
-                        <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqq2zBtUyfU4PTsNQ9IosU08kKWGNGePrQd_h1FUl0xrT4jYDk7D6PS1DzQFMDtf0xGq4&usqp=CAU">
-                            Super-Man
-                        </option>
-                        <option value="https://http2.mlstatic.com/D_NQ_NP_940641-MLA78614579494_082024-O.webp">
-                            Green lantern
-                        </option>
-                        <option value="https://upload.wikimedia.org/wikipedia/en/e/e4/Catwoman_Infobox.jpg">
-                            Catwoman
-                        </option>
-                        <option value="https://i.pinimg.com/736x/8d/41/6d/8d416d821e366aeb0853081dbcab9f0e.jpg">
-                            Bionic Woman
-                        </option>
-                        <option value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGX-ljswJd6-9qa3bl2hmNummUmerrIw89YHG8uVzKaR2SmiLzLA1mfrJr0n1UhuP2Ae4&usqp=CAU">
-                            Captein America
-                        </option>
-                        <option value="https://thecouch.world/wp-content/uploads/2020/05/846115343.jpg">
-                            Tanos
-                        </option>
+                        @for (hero of heroesData; track hero) {
+                            <option [value]="hero.enlace">
+                                {{ hero.name }}
+                            </option>
+                        }
                     </select>
                 </div>
                 <div class="input-group">

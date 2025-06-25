@@ -16,6 +16,23 @@ export class HeroNew {
   //creamos el FormBuilder (herramienta que te hace más facil hacer un formulario)
   readonly #formBuilder = inject(FormBuilder);
   statsString: string[] = ["agility", "combat", "durability", "intelligence", "power", "speed", "strength"];
+  names: string[] =["Joker", "Hulk", "Super-Man", "Green lantern", "Catwoman", "Bionic Woman", "Captein America", "Tanos"];
+  enlaces: string[] =[
+    "https://i.pinimg.com/originals/86/75/02/867502a6701dc48f7b7643a92cd8a531.png",
+    "https://i.pinimg.com/564x/3f/f9/7d/3ff97d4156820b11ff86bf3862ebaee5.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqq2zBtUyfU4PTsNQ9IosU08kKWGNGePrQd_h1FUl0xrT4jYDk7D6PS1DzQFMDtf0xGq4&usqp=CAU",
+    "https://http2.mlstatic.com/D_NQ_NP_940641-MLA78614579494_082024-O.webp",
+    "https://upload.wikimedia.org/wikipedia/en/e/e4/Catwoman_Infobox.jpg",
+    "https://i.pinimg.com/736x/8d/41/6d/8d416d821e366aeb0853081dbcab9f0e.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGX-ljswJd6-9qa3bl2hmNummUmerrIw89YHG8uVzKaR2SmiLzLA1mfrJr0n1UhuP2Ae4&usqp=CAU",
+    "https://thecouch.world/wp-content/uploads/2020/05/846115343.jpg"
+  ]
+
+  heroesData = this.names.map ((name, index)=>({
+    name,
+    enlace: this.enlaces[index]
+  }));
+
   hForm: FormGroup = this.#formBuilder.group({
     name: ['Joker', Validators.required, heroNameValidators],
     stats: this.#formBuilder.group({
