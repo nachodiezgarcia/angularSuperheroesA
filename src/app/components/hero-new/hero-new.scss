@@ -2,52 +2,20 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
-h3{
-    text-align: center;
-}
-
-form {
-    background-color: antiquewhite;
-    padding: 10px;
-    
-    label{
-        display: inline-block;
-        width: 90px;
+form {  
+    label {
+        @apply inline-block w-[90px];
     }
 
-    input, select {
-        flex: 6;
-        min-width: 25%;
-        padding: 0.5rem;
-        margin-bottom: 0.7rem;
-    }
-
-    button{
-        padding: 1rem;
-        background-color: grey;
-        color: aliceblue;
-        cursor: pointer;
-        border: none;
+    input, select{
+        @apply p-[0.5rem] min-w-1/4 mb-[0.7rem] bg-[white];
     }
 
     fieldset{
-        border: none;
+        @apply border-none;
     }
     
     .error{
-        color: red;
-        font-weight: bolder;
-        margin-bottom: 15px;
+        @apply mb-[15px] text-[red] font-[bolder];
     }
-}
-
-.row{
-    padding: 10px;
-    display: flex;
-}
-
-.column{
-    display: flex;
-    flex-direction: column;
-    padding: 0.8rem;
 }

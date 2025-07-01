@@ -3,12 +3,13 @@ import { HeroList } from './components/hero-list/hero-list';
 import { HeroNew } from "./components/hero-new/hero-new";
 import { HeroService } from './shared/services/hero';
 import { Hero } from './shared/interfaces/hero.interface';
+import { Header } from "./shared/components/header/header";
+import { Footer } from "./shared/components/footer/footer";
 
 @Component({
   selector: 'app-root',
-  imports: [HeroList, HeroNew],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  imports: [HeroList, HeroNew, Header, Footer],
+  templateUrl: './app.html'
 })
 export class App {
   protected title = 'angular-renissance-workshop';

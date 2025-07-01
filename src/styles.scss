@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+  @apply cursor-pointer bg-gray-100 border rounded-xs;
+  @apply text-black border-black text-xs flex items-center justify-center h-5 w-5;
+}
+
+.btn-gray {
+  @apply bg-white text-black border-1 border-gray-400;
+}
+
+.btn-gray:hover {
+  background-color: #e7e7e7;
+}
+
+.btn-gray:disabled {
+  .btn-gray:hover{
+      @apply opacity-45 cursor-default bg-white;
+  }
+  @apply opacity-45 cursor-default bg-white;
+}
+
+html {
+  font-size: 80%;
+}
+
+@media (min-width: 1600px) {
+    html {
+        font-size: 90%;
+    }
+}
+
+.row {
+  @apply flex;
+}
+
+.column {
+  @apply flex flex-col p-4;
+}

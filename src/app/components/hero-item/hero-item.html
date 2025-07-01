@@ -1,9 +1,9 @@
-<div [class]="isVillain() ? 'hero-item hero-villain' : 'hero-item'">
-    <div  class="hero-img">
-        <img [src]="hero().img" alt="Hero image" />
+<div class="min-w-72 border border-black rounded-lg p-3.5 inline-block text-lime-400" [class.text-blue-50]="isVillain()" [class.bg-purple-800]="isVillain()">
+    <div class="flex justify-center">
+        <img class="rounded w-52 h-48 block" [src]="hero().img" alt="Hero image" />
     </div>
-    <div class="details">
-        <div class="hero-name"> {{hero().name}}
+    <div class="text-center">
+        <div class=" font-extrabold text-[1.4rem]"> {{hero().name}}
         @if (isVillain()) {
             👿🦹
         }@else {
@@ -13,11 +13,11 @@
     </div>
 
     @for(stats of hero().stats | keyvalue; track stats.key){
-        <div class="hero-stats">
-            <span>{{ stats.key | titlecase}}: {{ stats.value }}</span>
-            <button [disabled]="stats.value === 1"
+        <div class="flex justify-between">
+            <span class="w-28">{{ stats.key | titlecase}}: {{ stats.value }}</span>
+            <button class="btn btn-gray" [disabled]="stats.value === 1"
             (click)="decrementStats(stats.key)">-</button>
-            <button [disabled]="stats.value === 99"
+            <button class="btn btn-gray" [disabled]="stats.value === 99"
             (click)="increment(stats.key)">+</button>
         </div>
     }
