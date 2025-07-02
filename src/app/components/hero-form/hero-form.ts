@@ -5,14 +5,14 @@ import { heroNameValidators } from '../../shared/validators/hero-name.validators
 import { TitleCasePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-hero-new',
+  selector: 'app-hero-form',
   imports: [ReactiveFormsModule, TitleCasePipe],
-  templateUrl: './hero-new.html',
-  styleUrl: './hero-new.scss'
+  templateUrl: './hero-form.html',
+  styleUrl: './hero-form.scss'
 })
-export class HeroNew {
+export class HeroForm {
   //devolvemos el heroe
-  add = output<Hero>();
+  add = output<Hero>({ alias: 'sendHero' });
   //creamos el FormBuilder (herramienta que te hace más facil hacer un formulario)
   readonly #formBuilder = inject(FormBuilder);
   statsString: string[] = ["agility", "combat", "durability", "intelligence", "power", "speed", "strength"];
