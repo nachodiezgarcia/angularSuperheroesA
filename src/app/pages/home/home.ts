@@ -5,7 +5,7 @@ import { HeroService } from '../../shared/services/hero';
 @Component({
   selector: 'app-home',
   imports: [HeroList],
-  template: '<app-hero-list [heroes]="heroes" />',
+  template: '<app-hero-list [heroes]="heroes"/>',
 })
 // heros es el array de heroes que tenemos lo podemos ver en services hero.ts
 // Con este array tenemos tres funcionalidades que una de ellas findAll, la vamos a utilizar aquí y new hero el add

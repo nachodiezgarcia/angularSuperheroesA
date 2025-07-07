@@ -14,6 +14,6 @@ export class HeroList {
   readonly #heroService = inject(HeroService);
   
   saveStats({ hero, abilitie, value }: HeroStatsChange) {
-    this.#heroService.update(hero, abilitie, value);
+    this.#heroService.updateStat(hero, abilitie, value);
   }
 }

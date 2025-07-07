@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Hero, keyStat } from '../interfaces/hero.interface';
+import { findIndex } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -52,16 +53,73 @@ export class HeroService {
       alignment: "good"
     },
   ];
+
+  readonly defaultHero: Hero = {
+    id: (Math.random() * 1000)+1000,
+    name: 'Joker',
+    img: 'https://i.pinimg.com/originals/86/75/02/867502a6701dc48f7b7643a92cd8a531.png',
+    alignment: 'bad',
+    stats: {
+      intelligence: 70,
+      strength: 60,
+      agility: 70,
+      speed: 50,
+      durability: 50,
+      power: 60,
+      combat: 60
+    }
+  };
+
+  readonly NullHero: Hero = {
+    id: (Math.random() * 1000)+10000,
+    name: 'Not Found',
+    img: '/errorAvangular.png',
+    alignment: 'bad',
+    stats:{
+      intelligence: -1, 
+      strength: -1, 
+      agility: -1, 
+      speed: -1,
+      durability: -1,
+      power: -1,
+      combat: -1
+    }
+  };
+
   //Antes era addHero pero como ahora estamos en nuestro servicio de HeroService no hace falta decir que es un huero por lo que solo ponemos add
   add(hero: Hero) {
     this.heroes.push(hero);
   }
 
-  update(hero: Hero, stat: keyStat, value: number) {
+  updateStat(hero: Hero, stat: keyStat, value: number) {
     hero.stats[stat] += value;
   }
 
   findAll(): Hero[] {
     return this.heroes;
+  }
+
+  findOne(id: number): Hero {
+    console.log('Searching ID:', id);
+    return this.heroes.find((hero) => hero.id === id) || this.NullHero;
+  }
+
+  isDefaultHero(hero: Hero): boolean {
+    return hero.id === this.defaultHero.id;
+  }
+
+  isNullHero(hero: Hero): boolean {
+    return hero.id === this.NullHero.id;
+  }
+
+  update(heroToUpdate: Hero) {
+    this.heroes = this.heroes.map((hero) => hero.id === heroToUpdate.id ? heroToUpdate : hero);
+  }
+
+  remove(heroLast: Hero){
+    const index = this.heroes.findIndex((hero) => hero.id === heroLast.id)
+    if (index !== -1) {
+      this.heroes.slice(index, 1)
+    }
   }
 }

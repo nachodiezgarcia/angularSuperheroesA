@@ -22,12 +22,8 @@ import { Router } from '@angular/router';
 export class HeroNew {
   readonly #heroService = inject(HeroService);
   readonly #router = inject(Router);
-  addHero(_hero: Hero){
-    const hero: Hero = {
-      ..._hero,
-      id: Math.floor(Math.random()*1000)+1
-    }
-    console.log("Creating new", hero)
+  addHero(hero: Hero){
+    console.log("Hero id:", hero.id)
     this.#heroService.add(hero);
     this.#router.navigate(['/home']);
   }

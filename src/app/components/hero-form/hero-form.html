@@ -1,18 +1,18 @@
 <div>
     <h4 class="error bg-red-700 text-white">{{ message }}</h4>
-    <form class="bg-lime-200 p-[10px]" [formGroup]="hForm" (ngSubmit)="addHero()">
+    <form class="bg-lime-200 p-[10px]" [formGroup]="hForm()" (ngSubmit)="addUpdate()">
         <div class="row">
             <div class="column">
                 <div class="input-group">
                     <label for="text">Nombre </label>
                     <input id="name" name="name" formControlName="name" type="text" placeholder="Name" required/>
                 </div>
-                @if (this.hForm.get("name")?.dirty && this.hForm.get("name")?.invalid) {
+                @if (this.hForm().get("name")?.dirty && this.hForm().get("name")?.invalid) {
                     <div class="error">
-                        @if (this.hForm.get("name")?.getError("required")) {
+                        @if (this.hForm().get("name")?.getError("required")) {
                             <div>* Hero name is required</div>
                         }
-                        @if (this.hForm.get("name")?.getError("forbiddenName")) {
+                        @if (this.hForm().get("name")?.getError("forbiddenName")) {
                             <div>* Hero name must be valid</div>
                         }
                     </div>
@@ -23,13 +23,13 @@
                             <label [for]="stat">{{ stat | titlecase }} </label>
                             <input [id]="stat" [name]="stat" [formControlName]="stat" type="number" [placeholder]="stat | titlecase" required/>
                         </div>
-                        @if (this.hForm.get("stats")?.get(stat)?.dirty && this.hForm.get("stats")?.get(stat)?.invalid) {
+                        @if (this.hForm().get("stats")?.get(stat)?.dirty && this.hForm().get("stats")?.get(stat)?.invalid) {
                             <div class="error">
-                                @if (this.hForm.get("stats")?.get(stat)?.getError("required")) {
+                                @if (this.hForm().get("stats")?.get(stat)?.getError("required")) {
                                     <div>* Hero {{stat}} is required</div>
                                 }
-                                @if (this.hForm.get("stats")?.get(stat)?.getError("min") ||
-                                this.hForm.get("stats")?.get(stat)?.getError("max")) {
+                                @if (this.hForm().get("stats")?.get(stat)?.getError("min") ||
+                                this.hForm().get("stats")?.get(stat)?.getError("max")) {
                                     <div>* The value must be betwen 1 and 99</div>
                                 }
                             </div>
@@ -57,10 +57,13 @@
                         </option>
                     </select>
                 </div>
-            </div> 
+            </div>
+            <div class="column">
+                <img [src]="this.hero().img" alt="Imagen de tu heroe" class="w-[290px] h-[370px]">
+            </div>
         </div>
         <div class="row">
-            <button class="bg-gray-700 text-sky-50 p-[1rem] cursor-pointer border-none" [disabled]="hForm.invalid" [hidden]="hForm.invalid">Create</button>
+            <button class="bg-gray-700 text-sky-50 p-[1rem] cursor-pointer border-none" [disabled]="hForm().invalid" [hidden]="hForm().invalid">{{ textButton() }}</button>
         </div>
     </form>
 </div>

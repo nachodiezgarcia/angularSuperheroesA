@@ -1,4 +1,4 @@
-<div class="min-w-72 border border-black rounded-lg p-3.5 inline-block" [class.text-lime-400]="!isVillain()" [class.text-gray-200]="isVillain()" [class.bg-purple-800]="isVillain()">
+<div class="min-w-72 items-center border border-black rounded-lg p-3.5 inline-block" [class.text-lime-400]="!isVillain()" [class.text-gray-200]="isVillain()" [class.bg-purple-800]="isVillain()">
     <div class="flex justify-center">
         <img class="rounded w-52 h-48 block" [src]="hero().img" alt="Hero image" />
     </div>
@@ -21,4 +21,13 @@
             (click)="increment(stats.key)">+</button>
         </div>
     }
+    <hr class="m-4" [class.border-amber-400]="!isVillain()" [class.border-gray-200]="isVillain()">
+    <div class="flex justify-center space-x-4">
+        <span class="btn btn-gray font-bold min-w-fit p-3"
+        [routerLink]="['/hero', 'update', hero().id]">Update
+        </span>
+        <span class="btn btn-gray font-bold min-w-fit p-3"
+        [routerLink]="['/hero', hero().id]">View
+        </span>
+    </div>
 </div>
