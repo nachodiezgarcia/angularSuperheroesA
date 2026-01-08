@@ -8,6 +8,16 @@ import { HeroService } from '../../shared/services/hero';
   selector: 'app-hero-list',
   imports: [HeroItem],
   templateUrl: './hero-list.html',
+  /*
+  <div class="flex flex-wrap gap-4">
+    @for(hero of heroes(); track hero.id){
+        <app-hero-item [hero]="hero"
+        (statsChange)="saveStats($event)"/>
+    }@empty{
+        <h1>There are no heroes :v</h1>
+    }
+  </div>
+  */
 })
 export class HeroList {
   heroes = input.required<Hero[]>();

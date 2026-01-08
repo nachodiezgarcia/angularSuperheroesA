@@ -1,1 +1,4 @@
-<p>hero-detail works!</p>
+id: {{id() | json }}
+hero: {{ hero() | json }}
+
+<app-hero-item [hero]="hero()"></app-hero-item>
