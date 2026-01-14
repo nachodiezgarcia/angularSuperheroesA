@@ -15,19 +15,30 @@
     @for(stats of hero().stats | keyvalue; track stats.key){
         <div class="flex justify-between">
             <span class="w-28">{{ stats.key | titlecase}}: {{ stats.value }}</span>
-            <button class="btn btn-gray" [disabled]="stats.value === 1"
-            (click)="decrementStats(stats.key)">-</button>
-            <button class="btn btn-gray" [disabled]="stats.value === 99"
-            (click)="increment(stats.key)">+</button>
+            @if(!readonly()) {
+                <button class="btn btn-gray" [disabled]="stats.value === 1"
+                (click)="decrementStats(stats.key)">-</button>
+                <button class="btn btn-gray" [disabled]="stats.value === 99"
+                (click)="increment(stats.key)">+</button>
+            }
         </div>
     }
     <hr class="m-4" [class.border-amber-400]="!isVillain()" [class.border-gray-200]="isVillain()">
     <div class="flex justify-center space-x-4">
-        <span class="btn btn-gray font-bold min-w-fit p-3"
-        [routerLink]="['/hero', 'update', hero().id]">Update
-        </span>
-        <span class="btn btn-gray font-bold min-w-fit p-3"
-        [routerLink]="['/hero', hero().id]">View
-        </span>
+        @if(!readonly()){
+            <span class="btn btn-gray font-bold min-w-fit p-3"
+            [routerLink]="['/hero', 'update', hero().id]">Update
+            </span>
+            <span class="btn btn-gray font-bold min-w-fit p-3"
+            [routerLink]="['/hero', hero().id]">View
+            </span>
+            <span class="btn btn-red font-bold min-w-fit p-3"
+            (click)="removeEvent(hero())">Remove
+            </span>
+        }@else{
+            <span class="btn btn-blue font-bold min-w-fit p-3" [routerLink]="['home']">
+                Back
+            </span>
+        }
     </div>
 </div>

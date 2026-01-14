@@ -22,8 +22,12 @@ import { HeroService } from '../../shared/services/hero';
 export class HeroList {
   heroes = input.required<Hero[]>();
   readonly #heroService = inject(HeroService);
-  
+
   saveStats({ hero, abilitie, value }: HeroStatsChange) {
     this.#heroService.updateStat(hero, abilitie, value);
+  }
+
+  removeHeroEvent(hero: Hero): void {
+    this.#heroService.remove(hero);
   }
 }

@@ -11,9 +11,11 @@ import { RouterLink } from '@angular/router';
 })
 export class HeroItem {
   hero = input.required<Hero>();
+  readonly = input<boolean>(false);
 
   // output(devolvemos) de lo que queremos cambiar del heroe
   statsChange = output<HeroStatsChange>();
+  removeHeroChange = output<Hero>();
 
   isVillain = computed(() => this.hero().alignment === 'bad');
 
@@ -24,5 +26,9 @@ export class HeroItem {
   
   increment (heroStat: keyStat): void {
     this.statsChange.emit({ hero: this.hero(), abilitie: heroStat, value: 1});
+  }
+
+  removeEvent (hero: Hero): void {
+    this.removeHeroChange.emit(hero);
   }
 }

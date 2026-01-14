@@ -1,7 +1,8 @@
 <div class="flex flex-wrap gap-4">
     @for(hero of heroes(); track hero.id){
         <app-hero-item [hero]="hero"
-        (statsChange)="saveStats($event)"/>
+        (statsChange)="saveStats($event)"
+        (removeHeroChange)="removeHeroEvent($event)"/>
     }@empty{
         <h1>There are no heroes :v</h1>
     }

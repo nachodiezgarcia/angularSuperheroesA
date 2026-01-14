@@ -1,4 +1,1 @@
-id: {{id() | json }}
-hero: {{ hero() | json }}
-
-<app-hero-item [hero]="hero()"></app-hero-item>
+<app-hero-item [hero]="hero()" [readonly]="true"></app-hero-item>
