@@ -119,7 +119,7 @@ export class HeroService {
   remove(heroLast: Hero){
     const index = this.heroes.findIndex((hero) => hero.id === heroLast.id)
     if (index !== -1) {
-      this.heroes.slice(index, 1)
+      this.heroes.splice(index, 1)
     }
   }
 }
